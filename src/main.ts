@@ -9,8 +9,9 @@ async function bootstrap() {
     forbidNonWhitelisted: true,
     transform: true,
   }))
-  await app.listen(process.env.PORT ?? 5000, () =>
-    console.log(`Server running on port ${process.env.PORT ?? 5000}`),
+  const port = process.env.PORT || 5000;
+  await app.listen(port, () =>
+    console.log(`Server running on port ${port}`),
   );
 }
-void bootstrap();
+bootstrap();

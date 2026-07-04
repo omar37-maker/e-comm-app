@@ -5,15 +5,20 @@ import { UserModule } from './user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Connection } from 'mongoose';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/ecommm45', {
+    ConfigModule.forRoot({
+      envFilePath: [`.${process.env.NODE_ENV}.env`, '.env'],
+    }),
+    MongooseModule.forRoot(process.env.MONGO_URL!, {
       onConnectionCreate: (connection: Connection) => {
-        connection.on('connected', () => console.log('connected'));
+        connection.on('connected', () => console.log('connected on database:::', process.env.MONGO_URL));
         return connection;
       },
     }),
+    
     UserModule,
     AuthModule,
   ],
