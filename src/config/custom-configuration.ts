@@ -7,20 +7,20 @@ export default () => ({
   },
 
   database: {
-    MONGO_URI: process.env.MONGO_URI ?? "mongodb://localhost:27017/social_app",
+    MONGO_URI: process.env.MONGO_URI!
   },
 
   encryption: {
-    ENCRYPTION_KEY: process.env.ENC_KEY?? "c50fbab25815764e774ee85e9e705c65071892f0e6fab102c99226fac4cb5df2",
-    IV_LENGTH: process.env.ENC_IV_LENGTH ?? "16",
+    ENCRYPTION_KEY: process.env.ENC_KEY!,
+    IV_LENGTH: process.env.ENC_IV_LENGTH!
   },
   jwt: {
     user: {
-      accessSignature: process.env.JWT_ACCESS_SECRET_USER ?? "user_access_test",
+      accessSignature: process.env.JWT_ACCESS_SECRET_USER!,
       accessExpiration: process.env.JWT_ACCESS_EXP_USER,
 
-      refreshSignature: process.env.JWT_REFRESH_SECRET_USER ?? "user_refresh_test",
-      refreshExpiration: process.env.JWT_REFRESH_EXP_USER,
+      refreshSignature: process.env.JWT_REFRESH_SECRET_USER!,
+      refreshExpiration: process.env.JWT_REFRESH_EXP_USER
     },
     admin: {
       accessSignature: process.env.JWT_ACCESS_SECRET_ADMIN ?? "admin_access_test",

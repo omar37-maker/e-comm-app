@@ -1,13 +1,10 @@
-import { compare, hash } from 'bcrypt';
+import { compare, genSalt, hash } from 'bcrypt';
 
 export default class SecurityService {
 
   async hash(plainText: string, salt?: number) {
-    // const generatedSalt = await genSalt(salt);
-    console.log({ mm: process.env.SALT_ROUNDS });
-    
-    const defaultSalt = process.env.SALT_ROUNDS ? parseInt(process.env.SALT_ROUNDS) : 10;
-    return hash(plainText, salt || defaultSalt);
+    const generatedSalt = await genSalt()
+    return hash (plainText, salt || generatedSalt);
   }
 
   compare(plainText: string, hash: string) {
