@@ -5,4 +5,8 @@ export class UserService {
   health() {
     return 'User service is healthy';
   }
+
+  profile(user: any) { 
+    return user
+  }
 }

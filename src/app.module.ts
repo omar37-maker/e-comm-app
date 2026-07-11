@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module} from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
@@ -20,7 +20,7 @@ import customConfiguration from './config/custom-configuration';
 
       useFactory: (configService: ConfigService) => ({
         uri: configService.get('database.MONGO_URI'),
-        onConnection: (connection: Connection) => { 
+        onConnectionCreate: (connection: Connection) => { 
           connection.on('connected', () => console.log('connected on database:::', configService.get('database.MONGO_URI')));
           return connection;
         }
@@ -33,4 +33,5 @@ import customConfiguration from './config/custom-configuration';
   controllers: [AppController],
   providers: [AppService, ConfigService],
 })
-export class AppModule {}
+export class AppModule{
+}
